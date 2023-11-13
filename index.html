@@ -91,19 +91,22 @@
     $(document).ready(function() {
       var randomNumber, maxTries, triesLeft, playerGuesses;
 
-      function startNewGame() {
-        randomNumber = Math.floor(Math.random() * 50) + 1;
-        maxTries = parseInt($("#tries-dropdown").val());
-        triesLeft = maxTries;
-        playerGuesses = [];
-        $("#gameOver, #retry, #startMenu, #help").hide();
-        $("#result").hide().fadeIn(500);
-        $("form").show();
-        $("#guess").val('');
-        $("#guesses").html('');
-        updateGuesses();
-        $("#guess").focus();
-      }
+function startNewGame() {
+  randomNumber = Math.floor(Math.random() * 50) + 1;
+  maxTries = parseInt($("#tries-dropdown").val());
+  triesLeft = maxTries;
+  playerGuesses = [];
+  $("#gameOver, #retry, #startMenu, #help").hide();
+  $("#result").hide().fadeIn(500);
+  $("form").show();
+  $("#guess").val('');
+  $("#guesses").html('');
+  updateGuesses();
+  $("#tries-left").text("Tries left: " + triesLeft); // Reset the number of tries
+  $("#result").text(""); // Reset the result/hint message
+  $("#guess").removeClass("shake"); // Remove the shake class if applied
+  $("#guess").focus();
+}
 
       function updateGuesses() {
         var guessesHTML = '<p>Your guesses: ' + playerGuesses.join(', ') + '</p>';
